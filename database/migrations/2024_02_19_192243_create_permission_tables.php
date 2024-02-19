@@ -32,7 +32,7 @@ return new class extends Migration
             }
             $table->string('name');       // For MySQL 8.0 use string('name', 125);
             //$table->string('guard_name'); // For MySQL 8.0 use string('guard_name', 125);
-            $table->timestamps();
+            //$table->timestamps();
             if ($teams || config('permission.testing')) {
                 $table->unique([$columnNames['team_foreign_key'], 'name']);
             } else {
@@ -79,7 +79,7 @@ return new class extends Migration
             throw new \Exception('Error: config/permission.php not found and defaults could not be merged. Please publish the package configuration before proceeding, or drop the tables manually.');
         }
 
-        Schema::drop($tableNames['model_has_roles']);
+        Schema::drop($tableNames['user_has_roles']);
         Schema::drop($tableNames['roles']);
     }
 };
