@@ -72,7 +72,7 @@
         </nav>
 
         <main>
-            <div class="inicio">
+            <div class="contenido">
                 <h1>Bienvenido a OpenMetaverse</h1>
                 <p>El lugar donde podrás gestionar tus propios mundos virtuales</p>
             </div>  
