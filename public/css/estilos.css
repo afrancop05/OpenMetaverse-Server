@@ -9,9 +9,10 @@
 
 .inicio {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    padding-top: 100px;
+    align-items: center;
+    padding-bottom: 500px;
     color: #fff;
     min-height: 94vh;
     background: url('../images/metaverse-fondo.jpg') no-repeat;
@@ -27,6 +28,7 @@
     background: url('../images/metaverse-fondo.jpg') no-repeat;
     background-size: cover;
     background-position: center;
+    padding-bottom: 10px;
 }
 
 .wrapper {
