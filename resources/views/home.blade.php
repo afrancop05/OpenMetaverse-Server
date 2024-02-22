@@ -21,34 +21,43 @@
                 @endif
             @endauth
             <br>
-                <table class="table table-bordered text-center">
-                    <thead>
-                        <tr class="table-secondary">
-                            @auth
-                                @if ((auth()->check()) && auth()->user()->hasRole('admin'))
-                                    <th>Propietario</th>
-                                @endif
-                            @endauth
-                            <th>Tipo</th>
-                            <th>Archivo</th>
-                            <th>Visibilidad</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr class="table-secondary">
+                        @auth
+                            @if ((auth()->check()) && auth()->user()->hasRole('admin'))
+                                <th>Propietario</th>
+                            @endif
+                        @endauth
+                        <th>Tipo</th>
+                        <th>Archivo</th>
+                        <th>Visibilidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Si es admin coger todos los datos de tabla contents -->
+                    @auth
+                        @if ((auth()->check()) && auth()->user()->hasRole('admin'))
+                            <tr>
+                                <td>Ale</td>
+                                <td>Mundo</td>
+                                <td>ejemplo1.xml</td>
+                                <td><input type="button" value="privado"></td>
+                            </tr>
+                        @endif
+                    @endauth
+                    <!-- Si es usuario mostrar todos los datos del usuario de tabla contents -->
+                    @auth
+                        @if ((auth()->check()) && auth()->user()->hasRole('user'))
                         <tr>
-                            @auth
-                                @if ((auth()->check()) && auth()->user()->hasRole('admin'))
-                                    <td>Ale</td>
-                                @endif
-                            @endauth
-                            <td>Mundo</td>
-                            <td>ejemplo1.xml</td>
+                            <td>Avatar</td>
+                            <td>ejemplo3.xml</td>
                             <td><input type="button" value="privado"></td>
                         </tr>
-                    </tbody>
-                </table>
-                </div>
-            </div>
+                        @endif
+                    @endauth
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

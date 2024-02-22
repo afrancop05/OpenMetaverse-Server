@@ -133,3 +133,7 @@
 .register-link p a:hover {
     text-decoration: underline;
 }
+
+.label {
+    font-size: 20px;
+}

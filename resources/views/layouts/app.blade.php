@@ -25,7 +25,7 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="images/logo.png" alt="Logo" style="width: 30px">
                 </a>
-                <a class="navbar-brand">
+                <a class="navbar-brand" href="{{ url('home') }}">
                     Inicio
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -56,7 +56,7 @@
                                     @auth
                                         @if ((auth()->check()) && auth()->user()->hasRole('user'))
                                             <li>
-                                                <a class="dropdown-item" href="{{ route('home') }}">
+                                                <a class="dropdown-item" href="{{ route('ver.contenido') }}">
                                                     Ver Contenido
                                                 </a>
                                             </li>
@@ -64,7 +64,7 @@
                                     @endauth
                                     
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('home') }}">
+                                        <a class="dropdown-item" href="{{ route('subir.contenido') }}">
                                             Subir Contenido
                                         </a>
                                     </li>
