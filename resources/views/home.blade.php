@@ -4,58 +4,61 @@
 <div class="contenido">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            @if (session('status'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('status') }}
-                </div>
-            @endif
 
             @auth
                 @if ((auth()->check()) && auth()->user()->hasRole('admin'))
-                    <h1>Contenido de OpenMetaverse</h1>
+                    <h1>DashBoard</h1>
                 @endif
             @endauth
             @auth
                 @if ((auth()->check()) && auth()->user()->hasRole('user'))
-                    <h1>Contenido OpenMetaverse de {{ Auth::user()->name }}</h1>
+                    <h1>Contenido de OpenMetaverse</h1>
                 @endif
             @endauth
             <br>
             <table class="table table-bordered text-center">
                 <thead>
                     <tr class="table-secondary">
-                        @auth
-                            @if ((auth()->check()) && auth()->user()->hasRole('admin'))
-                                <th>Propietario</th>
-                            @endif
-                        @endauth
+                        <th>Propietario</th>
                         <th>Tipo</th>
                         <th>Archivo</th>
-                        <th>Visibilidad</th>
+                        @auth
+                            @if ((auth()->check()) && auth()->user()->hasRole('admin'))
+                                <th>Visibilidad</th>
+                            @endif
+                        @endauth
+                        <th>Creado en</th>
+                        <th>Última Actualización</th>
+                        @auth
+                            @if ((auth()->check()) && auth()->user()->hasRole('admin'))
+                                <th>Gestion</th>
+                            @endif
+                        @endauth
+                        
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Si es admin coger todos los datos de tabla contents -->
-                    @auth
-                        @if ((auth()->check()) && auth()->user()->hasRole('admin'))
-                            <tr>
-                                <td>Ale</td>
-                                <td>Mundo</td>
-                                <td>ejemplo1.xml</td>
-                                <td><input type="button" value="privado"></td>
-                            </tr>
-                        @endif
-                    @endauth
-                    <!-- Si es usuario mostrar todos los datos del usuario de tabla contents -->
-                    @auth
-                        @if ((auth()->check()) && auth()->user()->hasRole('user'))
-                        <tr>
-                            <td>Avatar</td>
-                            <td>ejemplo3.xml</td>
-                            <td><input type="button" value="privado"></td>
-                        </tr>
-                        @endif
-                    @endauth
+                    @foreach($tableData as $data)
+                    <tr>
+                        <td>{{ $data->owner->name }}</td> <!-- Suponiendo que hay una relación owner en el modelo Content -->
+                        <td>{{ $data->type->type }}</td>
+                        <td>{{ $data->file }}</td>
+                        @auth
+                            @if ((auth()->check()) && auth()->user()->hasRole('admin'))
+                                <td><input type="button" value="{{ $data->public ? 'Público' : 'Privado' }}"></td>
+                            @endif
+                        @endauth
+                        <td>{{ $data->created_at }}</td>
+                        <td>{{ $data->updated_at }}</td>
+                        @auth
+                            @if ((auth()->check()) && auth()->user()->hasRole('admin'))
+                                <td><input type="button" value="Borrar">
+                                <input type="button" value="Editar "></td>
+                            @endif
+                        @endauth
+                        
+                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

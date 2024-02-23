@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -9,9 +10,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'showContent'])->name('home');
 
-Route::get('/ver', [UserController::class, "verContenido"]) -> name("ver.contenido");
+Route::get('/ver', [UserController::class, "showContentUser"]) -> name("ver.contenido");
+
+Route::get('/borrar/{id}', [UserController::class, 'borrarContenido'])->name('borrar.contenido');
+
+Route::post('/cambiar-visibilidad/{id}', [UserController::class, 'cambiarVisibilidad'])->name('cambiar.visibilidad');
 // Ruta para mostrar el formulario (GET)
 Route::get('/subir', [UserController::class, 'mostrarFormularioSubida'])->name('mostrar.formulario.subida');
 
