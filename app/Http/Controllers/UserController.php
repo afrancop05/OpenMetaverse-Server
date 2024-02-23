@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Content;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -19,7 +21,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -70,8 +72,34 @@ class UserController extends Controller
         return view("user.ver");
     }
 
-    public function subirContenido()
+    public function subirContenido(Request $request)
+    {
+        if ($request->hasFile('archivo')) {
+            $archivo = $request->file('archivo');
+            $owner_id = Auth::id();
+            $nombreArchivo = $archivo->getClientOriginalName();; // Nombre del archivo
+            $archivo->move(public_path('storage/ficheros/'.$owner_id), $nombreArchivo);
+            dd($archivo);
+            $hashChecksum = md5_file(public_path('storage/ficheros/' . $nombreArchivo));
+            
+            $content = new Content();
+            $content->file = $nombreArchivo;
+            $content->checksum = $hashChecksum;
+            $content->public = true; // Suponiendo que por defecto es público
+            $content->type_id = $request->tipo; // Asignar el tipo seleccionado
+            $content->owner_id = Auth::id(); // Obtener el ID del propietario de la sesión
+            
+            $content->save();
+            
+            return redirect()->route('subir.contenido')->with('success', 'Contenido subido y guardado en la base de datos exitosamente.');
+        } else {
+            return redirect()->route('subir.contenido')->with('error', 'Error al subir el archivo.');
+        }
+    }
+
+    public function mostrarFormularioSubida()
     {
         return view("user.subir");
     }
+    
 }

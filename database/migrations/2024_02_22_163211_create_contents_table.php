@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("file");
             $table->string("checksum");
-            $table->boolean("public")->default(false);
+            $table->boolean("public")->default(true);
             $table->unsignedBigInteger("owner_id");
             $table->foreign("owner_id")->references("id")->on("users")->onDelete("cascade")->onUpdate("cascade");
             $table->unsignedBigInteger("type_id");

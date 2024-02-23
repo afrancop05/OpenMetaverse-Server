@@ -14,9 +14,9 @@
                     <label for="tipo" class="label">Tipo</label>
                     <!-- La opcion seleccionada se tiene que guardar en type_id de la tabla contents por su ID -->
                     <select name="tipo" id="tipo" class="form-control">
-                        <option value="artefacto">Artefacto</option>
-                        <option value="avatar">Avatar</option>
-                        <option value="mundo">Mundo</option>
+                        <option value="1">Artefacto</option>
+                        <option value="2">Avatar</option>
+                        <option value="3">Mundo</option>
                     </select>
                 </div>
                 <br>
