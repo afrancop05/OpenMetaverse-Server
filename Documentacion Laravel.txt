@@ -1,0 +1,108 @@
+Inicializar proyecto
+
+composer install
+
+npm install
+
+-----------------------------------------------------------------------
+
+Crear proyecto con nombre proyecto1
+
+php create-project laravel/laravel projecto1
+
+-----------------------------------------------------------------------
+
+Iniciar servidor de laravel que se inicia en el puerto 8000
+
+php artisan serve --host=192.168.33.20
+
+npm run dev
+
+-----------------------------------------------------------------------
+
+Crear modelo de un objeto Proveedor
+
+php artisan make:model Proveedor -msf
+
+-----------------------------------------------------------------------
+
+Crear tablas bd
+
+php artisan migrate
+
+-----------------------------------------------------------------------
+
+Limpiar todas las tablas y las borra
+
+php artisan migrate:rollback
+
+-----------------------------------------------------------------------
+
+Rellenar tablas con faker
+
+php artisan db:seed --class=ProveedorSeeder
+
+-----------------------------------------------------------------------
+
+Limpiar tablas
+
+php artisan migrate:fresh
+
+-----------------------------------------------------------------------
+
+Mostrar rutas
+
+php artisan route:list
+
+-----------------------------------------------------------------------
+
+Buscar en la base de datos del proyecto laravel
+
+php artisan tinker
+
+-----------------------------------------------------------------------
+ 
+Ejecuciones laravel en la terminal tinker
+
+--- Encuentra el proveedor 40 ---
+
+$provel = App\Models\Proveedor::find(40); 
+
+
+--- Del proveedor recoge la ciudad ---
+
+$provel->ciudad
+
+
+--- Coge los datos del proveedor que contenga "ar" en su nombre ---
+
+$provel = App\Models\Proveedor::where('nombre','like','%ar%')->get();
+
+
+--- Coge todos los ids de proveedores ---
+
+Proveedor::pluck("id")
+
+
+--- **Se ha creado una tabla Agente con una clave foranea a Proveedores **
+    y se ha consultado el nombre del proveedor desde el agente ---
+
+$agente->proveedor->nombre
+
+----------------------------------------------------------------------
+
+Crear controlador Proveedor ( uno fuente otro para la api )
+
+php artisan make:controller ProveedorController --resource
+php artisan make:controller ProveedorapiController --api
+
+----------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
