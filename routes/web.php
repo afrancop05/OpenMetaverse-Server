@@ -17,6 +17,10 @@ Route::get('/ver', [UserController::class, "showContentUser"]) -> name("ver.cont
 Route::get('/borrar/{id}', [UserController::class, 'borrarContenido'])->name('borrar.contenido');
 
 Route::post('/cambiar-visibilidad/{id}', [UserController::class, 'cambiarVisibilidad'])->name('cambiar.visibilidad');
+
+Route::get('/editar/{id}', [UserController::class, 'mostrarFormularioEditar'])->name('editar.contenido');
+
+Route::put('/actualizar-contenido/{id}', [ContentController::class, 'actualizarContenido'])->name('actualizar.contenido');
 // Ruta para mostrar el formulario (GET)
 Route::get('/subir', [UserController::class, 'mostrarFormularioSubida'])->name('mostrar.formulario.subida');
 

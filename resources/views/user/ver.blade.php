@@ -53,7 +53,10 @@
                                 @csrf
                                 <button type="submit" >Borrar</button>
                             </form>
-                            <input type="button" value="Editar ">
+                            <form action="{{ route('editar.contenido', $data->id) }}" method="GET">
+                                @csrf
+                                <button type="submit">Editar</button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach

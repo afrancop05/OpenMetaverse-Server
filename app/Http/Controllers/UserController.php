@@ -107,6 +107,32 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'Visibilidad cambiada exitosamente.');
     }
 
+    public function mostrarFormularioEditar($id)
+    {
+        $contenido = Content::find($id);
+        
+        if (!$contenido) {
+            return redirect()->back()->with('error', 'El contenido no se encontró.');
+        }
+
+        return view('user.editar', compact('contenido'));
+    }
+
+    public function actualizarContenido(Request $request, $id)
+    {
+        $contenido = Content::find($id);
+
+        if (!$contenido) {
+            return redirect()->back()->with('error', 'El contenido no se encontró.');
+        }
+
+        // Actualizar la visibilidad del contenido
+        $contenido->public = $request->visibilidad;
+        $contenido->save();
+
+        return redirect()->route('editar.contenido')->with('success', 'Contenido actualizado exitosamente.');
+    }
+
     public function showContentUser()
     {
         $owner_id = Auth::id();
