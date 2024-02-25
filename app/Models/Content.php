@@ -11,18 +11,18 @@ class Content extends Model
 
     protected $fillable=[
         'file',
-    ];
-
-    protected $hidden = [
-        'checksum',
         'public'
     ];
 
-    public function type() { 
-        return $this->belongsTo(Type::class,"type_id","id"); 
+    protected $hidden = [
+        'checksum'
+    ];
+
+    public function type() {
+        return $this->belongsTo(Type::class,"type_id","id");
     }
 
-    public function user() { 
-        return $this->belongsTo(User::class,"owner_id","id"); 
+    public function user() {
+        return $this->belongsTo(User::class,"owner_id","id");
     }
 }
