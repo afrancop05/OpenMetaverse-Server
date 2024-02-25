@@ -52,8 +52,16 @@
                         <td>{{ $data->updated_at }}</td>
                         @auth
                             @if ((auth()->check()) && auth()->user()->hasRole('admin'))
-                                <td><input type="button" value="Borrar">
-                                <input type="button" value="Editar "></td>
+                                <td>
+                                    <form action="{{ route('borrar.contenido', $data->id) }}" method="GET">
+                                        @csrf
+                                        <button type="submit" >Borrar</button>
+                                    </form>
+                                    <form action="{{ route('editar.contenido', $data->id) }}" method="GET">
+                                        @csrf
+                                        <button type="submit">Editar</button>
+                                    </form>
+                                </td>
                             @endif
                         @endauth
                         

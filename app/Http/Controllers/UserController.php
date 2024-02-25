@@ -119,19 +119,40 @@ class UserController extends Controller
     }
 
     public function actualizarContenido(Request $request, $id)
-    {
-        $contenido = Content::find($id);
+{
+    $contenido = Content::find($id);
+    $owner_id = Auth::id();
 
-        if (!$contenido) {
-            return redirect()->back()->with('error', 'El contenido no se encontró.');
+    if (!$contenido) {
+        return redirect()->back()->with('error', 'El contenido no se encontró.');
+    }
+
+    // Subir y sustituir el archivo si se proporciona uno nuevo
+    if ($request->hasFile('archivo')) {
+        // Borrar el archivo anterior si existe
+        $archivoAnterior = public_path('storage/ficheros/'. $owner_id . '/' . $contenido->file);
+        if (file_exists($archivoAnterior)) {
+            unlink($archivoAnterior);
         }
 
-        // Actualizar la visibilidad del contenido
-        $contenido->public = $request->visibilidad;
-        $contenido->save();
+        $archivo = $request->file('archivo');
+        $nombreArchivo = $archivo->getClientOriginalName();
 
-        return redirect()->route('editar.contenido')->with('success', 'Contenido actualizado exitosamente.');
+        // Mover el archivo al directorio deseado sin crear una carpeta adicional con el nombre del archivo
+        $archivo->move(public_path('storage/ficheros/'. $owner_id), $nombreArchivo);
+
+        // Actualizar el nombre del archivo en el modelo
+        $contenido->file = $nombreArchivo;
     }
+
+    // Actualizar la visibilidad del contenido
+    $contenido->public = $request->visibilidad;
+
+    // Guardar los cambios en el contenido
+    $contenido->save();
+
+    return redirect()->route('editar.contenido', ['id' => $id])->with('success', 'Contenido actualizado exitosamente.');
+}
 
     public function showContentUser()
     {

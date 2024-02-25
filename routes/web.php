@@ -20,7 +20,7 @@ Route::post('/cambiar-visibilidad/{id}', [UserController::class, 'cambiarVisibil
 
 Route::get('/editar/{id}', [UserController::class, 'mostrarFormularioEditar'])->name('editar.contenido');
 
-Route::put('/actualizar-contenido/{id}', [ContentController::class, 'actualizarContenido'])->name('actualizar.contenido');
+Route::put('/actualizar-contenido/{id}', [UserController::class, 'actualizarContenido'])->name('actualizar.contenido');
 // Ruta para mostrar el formulario (GET)
 Route::get('/subir', [UserController::class, 'mostrarFormularioSubida'])->name('mostrar.formulario.subida');
 

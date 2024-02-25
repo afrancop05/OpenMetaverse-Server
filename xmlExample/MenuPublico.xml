@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mvml-menu>
+<menu>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Sesión</title>
+        <meta name="description" content="Menu Publico"/>
+        <meta name="author" content="Daniel Píriz"/>
+        <meta name="keywords" content="MVML"/>
+    </head>
+    <canvas>
+        <container type="flow">
+            <text>Esto es una prueba</text>
+            <input type="text" hint="Prueba"/>
+            <button hint="Prueba"/>
+        </container>
+    </canvas>
+</menu>
