@@ -24,6 +24,14 @@
                     <label for="archivo" class="label">Archivo:</label>
                     <input type="file" name="archivo" id="archivo" required="" accept=".xml,.mvml" class="form-control">
                 </div>  
+                <div class="form-group">
+                    <label for="visibilidad" class="label">Visibilidad</label>
+                    <!-- La visibilidad seleccionada se guardará en el campo public de la tabla contents -->
+                    <select name="visibilidad" id="visibilidad" class="form-control">
+                        <option value="1">Público</option>
+                        <option value="0">Privado</option>
+                    </select>
+                </div>
 
                 <br>
                 <button type="submit" class="btn btn-light">Subir Contenido</button>
