@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContentApiController;
+use App\Http\Controllers\WorldMaker;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::apiResource('Content', ContentApiController::class);
+Route::apiResource('content', ContentApiController::class);
+
+Route::apiResource('world-maker', WorldMaker::class);
