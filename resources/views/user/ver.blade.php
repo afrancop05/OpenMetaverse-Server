@@ -12,18 +12,18 @@
 
             @auth
                 @if ((auth()->check()) && auth()->user()->hasRole('admin'))
-                    <h1>Contenido de OpenMetaverse</h1>
+                    <h1 id="titulo">Contenido de OpenMetaverse</h1>
                 @endif
             @endauth
             @auth
                 @if ((auth()->check()) && auth()->user()->hasRole('user'))
-                    <h1>Contenido OpenMetaverse de {{ Auth::user()->name }}</h1>
+                    <h1 id="titulo">Contenido OpenMetaverse de {{ Auth::user()->name }}</h1>
                 @endif
             @endauth
             <br>
-            <table class="table table-bordered text-center">
+            <table>
                 <thead>
-                    <tr class="table-secondary">
+                    <tr>
                         <th>Tipo</th>
                         <th>Archivo</th>
                         <th>Visibilidad</th>
@@ -41,7 +41,7 @@
                         <td>
                             <form action="{{ route('cambiar.visibilidad', $data->id) }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn btn-{{ $data->public ? 'success' : 'danger' }} py-1">
+                                <button type="submit" class="btn btn-outline-{{ $data->public ? 'success' : 'danger' }} py-1">
                                     {{ $data->public ? 'Público' : 'Privado' }}
                                 </button>
                             </form>
@@ -51,12 +51,12 @@
                         <td style="display: flex; align-items: center;">
                             <form action="{{ route('editar.contenido', $data->id) }}" method="GET">
                                 @csrf
-                                <button type="submit" class="btn btn-outline-secondary py-1">Editar</button>
+                                <button type="submit" class="btn btn-outline-secondary py-1"><i class='bx bx-edit' ></i></button>
                             </form>
                             <div style="margin-left: 5px;"></div>
                             <form action="{{ route('borrar.contenido', $data->id) }}" method="GET">
                                 @csrf
-                                <button type="submit" class="btn btn-outline-danger py-1">Borrar</button>
+                                <button type="submit" class="btn btn-outline-danger py-1"><i class='bx bxs-trash' ></i></button>
                             </form>
                         </td>
                     </tr>

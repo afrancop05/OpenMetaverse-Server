@@ -90,7 +90,7 @@
         <main>
             <div class="contenido">
                 <h1>Bienvenido a OpenMetaverse</h1>
-                <p>Gestiona tu metaverso o disfruta el contenido de OpenMetaverse</p>
+                <h5>Gestiona tu metaverso o disfruta el contenido de OpenMetaverse</h5>
             </div>  
         </main>
     </div>

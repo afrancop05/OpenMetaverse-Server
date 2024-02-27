@@ -7,12 +7,38 @@
     font-family: "Poppins", "san-serif";
 }
 
+#titulo {
+    text-align: center;
+}
+
+table {
+    text-align: center;
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {        
+    padding: 8px;
+}
+
+thead {
+    background-color: #2d196c;
+    color: #fff;
+}
+
+tbody {
+    background-color: #fcdffd;
+    color: black;
+}
+
 .contenido {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-bottom: 500px;
+    padding-bottom: 300px;
     color: #fff;
     min-height: 94vh;
     background: url('../images/metaverse-fondo.jpg') no-repeat;
