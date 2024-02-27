@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
 
-    
+
     /**
      * Display a listing of the resource.
      */
@@ -24,7 +24,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -95,22 +95,22 @@ class UserController extends Controller
     public function cambiarVisibilidad($id)
     {
         $content = Content::find($id);
-    
+
         if (!$content) {
             return redirect()->back()->with('error', 'El contenido no se encontró.');
         }
-    
+
         // Cambiar la visibilidad del contenido
         $content->public = !$content->public; // Cambiar de público a privado o viceversa
         $content->save();
-    
+
         return redirect()->back()->with('success', 'Visibilidad cambiada exitosamente.');
     }
 
     public function mostrarFormularioEditar($id)
     {
         $contenido = Content::find($id);
-        
+
         if (!$contenido) {
             return redirect()->back()->with('error', 'El contenido no se encontró.');
         }
@@ -148,6 +148,9 @@ class UserController extends Controller
         // Actualizar la visibilidad del contenido
         $contenido->public = $request->visibilidad;
 
+        // Actualizar el tipo del contenido
+        $contenido->type_id = $request->tipo;
+
         // Guardar los cambios en el contenido
         $contenido->save();
 
@@ -174,18 +177,18 @@ class UserController extends Controller
             $archivo = $request->file('archivo');
             $owner_id = Auth::id();
             $nombreArchivo = $archivo->getClientOriginalName();
-            
+
             // Mover el archivo a la carpeta de almacenamiento
             $archivo->move(public_path('storage/ficheros/'.$owner_id), $nombreArchivo);
-            
+
             // Obtener la ruta completa del archivo
             $rutaArchivo = public_path('storage/ficheros/' . $owner_id . '/' . $nombreArchivo);
-            
+
             // Verificar si el archivo se movió correctamente
             if (file_exists($rutaArchivo)) {
                 // Calcular el checksum MD5 del archivo
                 $hashChecksum = md5_file($rutaArchivo);
-                
+
                 $content = new Content();
                 $content->file = $nombreArchivo;
                 $content->checksum = $hashChecksum;
@@ -193,9 +196,9 @@ class UserController extends Controller
                 $content->public = $request->visibilidad;
                 $content->type_id = $request->tipo;
                 $content->owner_id = Auth::id();
-                
+
                 $content->save();
-                
+
                 return redirect()->route('subir.contenido')->with('success', 'Contenido subido y guardado en la base de datos exitosamente.');
             } else {
                 return redirect()->route('subir.contenido')->with('error', 'Error al mover el archivo.');
@@ -209,5 +212,5 @@ class UserController extends Controller
     {
         return view("user.subir");
     }
-    
+
 }

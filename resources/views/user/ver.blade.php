@@ -41,21 +41,22 @@
                         <td>
                             <form action="{{ route('cambiar.visibilidad', $data->id) }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn btn-{{ $data->public ? 'success' : 'danger' }}">
+                                <button type="submit" class="btn btn-{{ $data->public ? 'success' : 'danger' }} py-1">
                                     {{ $data->public ? 'Público' : 'Privado' }}
                                 </button>
                             </form>
                         </td>
                         <td>{{ $data->created_at }}</td>
                         <td>{{ $data->updated_at }}</td>
-                        <td>
-                            <form action="{{ route('borrar.contenido', $data->id) }}" method="GET">
-                                @csrf
-                                <button type="submit" >Borrar</button>
-                            </form>
+                        <td style="display: flex; align-items: center;">
                             <form action="{{ route('editar.contenido', $data->id) }}" method="GET">
                                 @csrf
-                                <button type="submit">Editar</button>
+                                <button type="submit" class="btn btn-outline-secondary py-1">Editar</button>
+                            </form>
+                            <div style="margin-left: 5px;"></div>
+                            <form action="{{ route('borrar.contenido', $data->id) }}" method="GET">
+                                @csrf
+                                <button type="submit" class="btn btn-outline-danger py-1">Borrar</button>
                             </form>
                         </td>
                     </tr>
