@@ -63,6 +63,16 @@
                                         @endif
                                     @endauth
                                     
+                                    @auth
+                                        @if ((auth()->check()) && auth()->user()->hasRole('admin'))
+                                            <li>
+                                                <a class="dropdown-item" href="{{ route('usuarios.todos') }}">
+                                                    Administrar Usuarios
+                                                </a>
+                                            </li>
+                                        @endif
+                                    @endauth
+
                                     <li>
                                         <a class="dropdown-item" href="{{ route('subir.contenido') }}">
                                             Subir Contenido

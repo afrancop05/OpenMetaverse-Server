@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Content;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -14,9 +15,16 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->busqueda){
+            $filtro = $request->busqueda;
+        }else{
+            $filtro = "";
+        }
+        //$usuarios = User::where("email","like", "%" . $filtro . "%")->get();
+        $usuarios = User::where("name","like", "%" . $filtro . "%")->simplePaginate(5);
+        return view("user.todos",["usuarios" => $usuarios,"busq" => $filtro]);
     }
 
     /**
@@ -64,7 +72,29 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        User::find($id)->delete();
+        return back();
+    }
+
+    public function cambiarRol($id) {
+
+        $rolUsuarioapp = Role::where("name", "user")->first();
+        $rolAdmin = Role::where("name", "admin")->first();
+
+        $usuario = User::find($id);
+
+        if ($usuario->hasRole("user")){
+
+            $usuario->syncRoles([$rolAdmin,"admin"]);
+
+        } else {
+
+            $usuario->syncRoles([$rolUsuarioapp,"user"]);
+
+        }
+
+        return back();
+
     }
 
     public function borrarContenido($id)

@@ -19,6 +19,14 @@ table {
     overflow: hidden;
 }
 
+#buscar {
+    background-color: #2d196c;
+    color: white;
+    border: none; /* Elimina el borde */
+    border-radius: 20px; /* Hace que el botón sea redondeado */
+    padding: 5px 10px; /* Ajusta el padding para darle espacio al texto */
+}
+
 th, td {        
     padding: 8px;
 }
