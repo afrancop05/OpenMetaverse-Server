@@ -16,9 +16,9 @@
                     <label for="tipo" class="label">Tipo</label>
                     <!-- La opción seleccionada se guardará en type_id de la tabla contents por su ID -->
                     <select name="tipo" id="tipo" class="form-control">
-                        <option value="1" {{ $contenido->type_id == 1 ? 'selected' : '' }}>Artefacto</option>
-                        <option value="2" {{ $contenido->type_id == 2 ? 'selected' : '' }}>Avatar</option>
-                        <option value="3" {{ $contenido->type_id == 3 ? 'selected' : '' }}>Mundo</option>
+                        <option value="1" {{ $contenido->type_id == 1 ? 'selected' : '' }}>Avatar</option>
+                        <option value="2" {{ $contenido->type_id == 2 ? 'selected' : '' }}>Mundo</option>
+                        <option value="3" {{ $contenido->type_id == 3 ? 'selected' : '' }}>Artefacto</option>
                     </select>
                 </div>
                 <br>
@@ -27,7 +27,7 @@
                     <div>{{ $contenido->file }}</div>
                     <label for="archivo" class="label">Subir nuevo archivo:</label>
                     <input type="file" name="archivo" id="archivo" accept=".xml,.mvml" class="form-control">
-                </div> 
+                </div>
 
                 <div class="form-group">
                     <label for="visibilidad" class="label">Visibilidad</label>
