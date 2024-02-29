@@ -12,22 +12,22 @@
 		<sky type="generated"/>
 	</environment>
 	<scene>
-		<rigid position="0,3,-5" scale="{{ $size }},{{ $size }},{{ $size }}">
+		<rigid position="0,3,-5" scale="{{ $shape_size }},{{ $shape_size }},{{ $shape_size }}">
 			<shape primitive="{{ $shape }}"></shape>
 			<collider shape="{{ $shape }}"/>
 		</rigid>
 		<static>
-            <?php $half_size = $plane_size; ?>
+            <?php $half_size = $plane_size / 2; ?>
 			<shape primitive="plane" scale="{{ $plane_size }},{{ $plane_size }},{{ $plane_size }}"></shape>
 			<collider shape="convex">
 				<point position="{{ $half_size }},0,{{ $half_size }}"/>
 				<point position="{{ -$half_size }},0,{{ $half_size }}"/>
-				<point position="{{ -$half_size }},0{{ -$half_size }}"/>
+				<point position="{{ -$half_size }},0,{{ -$half_size }}"/>
 				<point position="{{ -$half_size }},0,{{ $half_size }}"/>
 				<point position="{{ -$half_size }},0,{{ -$half_size }}"/>
 				<point position="{{ $half_size }},0,{{ -$half_size }}"/>
 			</collider>
 		</static>
-		<light type="directional" shadow="{{ $light_shadow }}" rotation="{{ $light_direction }}" color="{{ $light_color }}"></light>
+		<light type="directional" shadow="{{ $light_shadow }}" rotation="{{ $light_direction }},0,0" color="{{ $light_color }}"></light>
     </scene>
 </world>

@@ -10,48 +10,35 @@ class WorldMaker extends Controller
     const VALID_SHAPES = ["cube", "sphere", "cylinder", "capsule"];
 
     /**
-     * Genera un mundo plano con una forma geométrica física que se desee.
+     * Genera a través de parámetros un mundo de muestra
      */
     public function index(Request $request)
     {
+        $name = $request->query("name", "Unnamed World");
+        $author = $request->query("author", "Unknown");
+        $description = $request->query("description", "");
+        $plane_size = $request->query("plane_size", "200");
         $shape = strtolower($request->query("shape", "cube"));
-        $size = strtolower($request->query("size", "1"));
+        $shape_size = $request->query("shape_size", "1");
+        $light_shadow = $request->query("light_shadow", "soft");
+        $light_direction = $request->query("light_direction", "-45");
+        $light_color = $request->query("light_color", "#FFFFFF");
         if(!in_array($shape, self::VALID_SHAPES)) $shape = "cube";
-        if(!is_numeric($size)) $size = "1";
-        $content = view("WorldMaker.index", ["shape"=>$shape, "size"=>$size]);
+        if(!is_numeric($plane_size)) $plane_size = "200";
+        if(!is_numeric($shape_size)) $shape_size = "1";
+        if(!is_numeric($light_direction)) $light_direction = "-45";
+        $attributes = [];
+        $attributes["name"] = $name;
+        $attributes["author"] = $author;
+        $attributes["description"] = $description;
+        $attributes["plane_size"] = $plane_size;
+        $attributes["shape"] = $shape;
+        $attributes["shape_size"] = $shape_size;
+        $attributes["light_shadow"] = $light_shadow;
+        $attributes["light_direction"] = $light_direction;
+        $attributes["light_color"] = $light_color;
+        $content = view("WorldMaker.index", $attributes);
         $reponse = response($content, 200)->header("Content-Type", "text/xml");
         return $reponse;
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }
