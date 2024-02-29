@@ -11,6 +11,16 @@
     text-align: center;
 }
 
+label {
+    text-shadow: 
+        -1px -1px 0 black,  
+        2px -1px 0 black,
+        -1px  1px 0 black,
+        2px  1px 0 black;
+    color: white;
+    padding: 3px;
+}
+
 table {
     text-align: center;
     border-collapse: collapse;

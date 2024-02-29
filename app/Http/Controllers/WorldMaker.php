@@ -43,4 +43,8 @@ class WorldMaker extends Controller
         $reponse = response($content, 200)->header("Content-Type", "text/xml");
         return $reponse;
     }
+
+    public function crearMundo() {
+        return view("WorldMaker.crear");
+    }
 }

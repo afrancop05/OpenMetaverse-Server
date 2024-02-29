@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\WorldMaker;
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,3 +34,7 @@ Route::get('/subir', [UserController::class, 'mostrarFormularioSubida'])->name('
 
 // Ruta para procesar la subida del archivo (POST)
 Route::post('/subir', [UserController::class, 'subirContenido'])->name('subir.contenido');
+
+Route::get('crearmundo', [WorldMaker::class, 'crearMundo'])->name('crear.mundo');
+
+// Ruta para cuando se cree el formulario de crear mundo

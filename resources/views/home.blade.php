@@ -48,7 +48,7 @@
                                 <td>
                                     <form action="{{ route('cambiar.visibilidad', $data->id) }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="btn btn-{{ $data->public ? 'success' : 'danger' }} py-1">
+                                        <button type="submit" class="btn btn-outline-{{ $data->public ? 'success' : 'danger' }} py-1">
                                             {{ $data->public ? 'Público' : 'Privado' }}
                                         </button>
                                     </form>

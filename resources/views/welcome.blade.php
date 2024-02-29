@@ -74,10 +74,17 @@
                                     @endauth
 
                                     <li>
+                                        <a class="dropdown-item" href="{{ route('crear.mundo') }}">
+                                            Crear Mundo
+                                        </a>
+                                    </li>
+
+                                    <li>
                                         <a class="dropdown-item" href="{{ route('subir.contenido') }}">
                                             Subir Contenido
                                         </a>
                                     </li>
+
                                     <li>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
