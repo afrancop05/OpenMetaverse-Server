@@ -8,6 +8,7 @@ class WorldMaker extends Controller
 {
 
     const VALID_SHAPES = ["cube", "sphere", "cylinder", "capsule"];
+    const SHADOW_TYPES = ["none", "hard", "soft"];
 
     /**
      * Genera a través de parámetros un mundo de muestra
@@ -24,6 +25,7 @@ class WorldMaker extends Controller
         $light_direction = $request->query("light_direction", "-45");
         $light_color = $request->query("light_color", "#FFFFFF");
         if(!in_array($shape, self::VALID_SHAPES)) $shape = "cube";
+        if(!in_array($light_shadow, self::SHADOW_TYPES)) $light_shadow = "soft";
         if(!is_numeric($plane_size)) $plane_size = "200";
         if(!is_numeric($shape_size)) $shape_size = "1";
         if(!is_numeric($light_direction)) $light_direction = "-45";
