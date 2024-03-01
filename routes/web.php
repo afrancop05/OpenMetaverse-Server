@@ -29,6 +29,10 @@ Route::get('rolusuario/{id}', [UserController::class, "cambiarRol"]) -> name("ro
 
 Route::get('borrausuario/{id}', [UserController::class, "destroy"]) -> name("borrarusuario");
 
+Route::get('descargar', [UserController::class, "descargarCliente"]) -> name("descargar.cliente");
+
+Route::get('/descargar/{fileName}', [UserController::class, "descargarFichero"])->name('descargar.fichero');
+
 // Ruta para mostrar el formulario (GET)
 Route::get('/subir', [UserController::class, 'mostrarFormularioSubida'])->name('mostrar.formulario.subida');
 

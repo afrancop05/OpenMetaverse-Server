@@ -18,7 +18,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js', "resources/js/apiLink.js"])
+    @vite(['resources/sass/app.scss', 'resources/js/app.js', "resources/js/apiLink.js", "resources/js/cliente.js"])
 </head>
 <body>
     <div id="app">
@@ -100,6 +100,13 @@
                                     </li>
                                 </ul>
                             </li>
+                            @auth
+                                @if ((auth()->check()) && auth()->user()->hasRole('user'))
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('descargar.cliente') }}">OpenMetaverse <i class='bx bx-download'></i></a>
+                                    </li>
+                                @endif
+                            @endauth
                         @endguest
                     </ul>
                 </div>

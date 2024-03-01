@@ -11,6 +11,20 @@
     text-align: center;
 }
 
+#download-list {
+    text-align: center;
+}
+
+#download-list ul {
+    display: inline-block;
+    padding: 0;
+}
+
+#download-list li {
+    display: inline;
+    margin-right: 10px; /* Espacio entre los elementos */
+}
+
 .mensaje-copiado {
     position: absolute;
     background-color: #2d196c; 

@@ -243,4 +243,16 @@ class UserController extends Controller
         return view("user.subir");
     }
 
+    public function descargarCliente() 
+    {
+        return view("client.ver");
+    }
+
+    public function descargarFichero($fileName) 
+    {
+        $path = public_path('cliente/' . $fileName);
+
+        return response()->download($path);
+    }
+
 }
