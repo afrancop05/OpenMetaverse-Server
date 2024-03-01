@@ -37,4 +37,6 @@ Route::post('/subir', [UserController::class, 'subirContenido'])->name('subir.co
 
 Route::get('crearmundo', [WorldMaker::class, 'crearMundo'])->name('crear.mundo');
 
+Route::post('crearmundo', [WorldMaker::class, 'guardarMundo'])->name('crear.mundo');
+
 // Ruta para cuando se cree el formulario de crear mundo

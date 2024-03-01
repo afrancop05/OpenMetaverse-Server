@@ -2,49 +2,48 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Content;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class WorldMaker extends Controller
 {
-
-    const VALID_SHAPES = ["cube", "sphere", "cylinder", "capsule"];
-    const SHADOW_TYPES = ["none", "hard", "soft"];
-
-    /**
-     * Genera a través de parámetros un mundo de muestra
-     */
-    public function index(Request $request)
-    {
-        $name = $request->query("name", "Unnamed World");
-        $author = $request->query("author", "Unknown");
-        $description = $request->query("description", "");
-        $plane_size = $request->query("plane_size", "200");
-        $shape = strtolower($request->query("shape", "cube"));
-        $shape_size = $request->query("shape_size", "1");
-        $light_shadow = $request->query("light_shadow", "soft");
-        $light_direction = $request->query("light_direction", "-45");
-        $light_color = $request->query("light_color", "#FFFFFF");
-        if(!in_array($shape, self::VALID_SHAPES)) $shape = "cube";
-        if(!in_array($light_shadow, self::SHADOW_TYPES)) $light_shadow = "soft";
-        if(!is_numeric($plane_size)) $plane_size = "200";
-        if(!is_numeric($shape_size)) $shape_size = "1";
-        if(!is_numeric($light_direction)) $light_direction = "-45";
-        $attributes = [];
-        $attributes["name"] = $name;
-        $attributes["author"] = $author;
-        $attributes["description"] = $description;
-        $attributes["plane_size"] = $plane_size;
-        $attributes["shape"] = $shape;
-        $attributes["shape_size"] = $shape_size;
-        $attributes["light_shadow"] = $light_shadow;
-        $attributes["light_direction"] = $light_direction;
-        $attributes["light_color"] = $light_color;
-        $content = view("WorldMaker.index", $attributes);
-        $reponse = response($content, 200)->header("Content-Type", "text/xml");
-        return $reponse;
-    }
-
     public function crearMundo() {
         return view("WorldMaker.crear");
+    }
+
+    public function guardarMundo(Request $request) {
+        $params = [
+            "name" => $request->post("name", "Undefined"),
+            "author" => User::find(Auth::id())->name,
+            "description" => $request->post("descripcion", ""),
+            "plane_size" => $request->post("tamanio", "100"),
+            "shape" => $request->post("forma", "cube"),
+            "shape_size" => $request->post("tamanioforma", "1"),
+            "light_shadow" => $request->post("sombraluz", "soft"),
+            "light_direction" => $request->post("dirluz", "-45"),
+            "light_color" => $request->post("colorluz", "#ffffff")
+        ];
+        $world_request = Request::create("/api/world-maker", "GET", $params);
+        $world_response = app()->handle($world_request);
+        $owner_id = Auth::id();
+        $route = public_path("/storage/ficheros/".$owner_id."/");
+        if (!file_exists($route)) mkdir($route, 0777, true);
+        $file_path = $route.$request->name.".xml";
+        file_put_contents($file_path, $world_response);
+
+        $hashChecksum = md5_file($file_path);
+        $content = new Content();
+        $content->file = $request->name.".xml";
+        $content->checksum = $hashChecksum;
+        $content->public = $request->visibilidad;
+        $content->type_id = 2;
+        $content->owner_id = $owner_id;
+
+        $content->save();
+        return redirect('http://192.168.33.20:8000/ver');
     }
 }
