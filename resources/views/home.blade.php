@@ -42,7 +42,11 @@
                     <tr>
                         <td>{{ $data->owner->name }}</td> <!-- Suponiendo que hay una relación owner en el modelo Content -->
                         <td>{{ $data->type->type }}</td>
-                        <td>{{ $data->file }}</td>
+                        <td>
+                            <button value="{{ $data->id }});" id="copy-api" class="btn btn-outline-secondary py-1">
+                                {{ $data->file }}
+                            </button>
+                        </td>
                         @auth
                             @if ((auth()->check()) && auth()->user()->hasRole('admin'))
                                 <td>

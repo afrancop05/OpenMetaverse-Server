@@ -44,6 +44,6 @@ class WorldMaker extends Controller
         $content->owner_id = $owner_id;
 
         $content->save();
-        return redirect('http://192.168.33.20:8000/ver');
+        return redirect($request->root()."/ver");
     }
 }

@@ -9,14 +9,6 @@
             <br>
             <form action="{{ route('crear.mundo') }}" method="POST" enctype="multipart/form-data"> {{-- Ruta al completar el formulario --}}
                 @csrf
-
-                <div class="form-group">
-                    <label for="author" class="label">Autor </label>
-                    {{-- Cambiar el value por el autor que viene por el controlador --}}
-                    <input type="text" value="Autor controlador" id="author" readonly class="form-control">
-                </div>
-                <br>
-
                 <div class="form-group">
                     <label for="name" class="label">Nombre</label>
                     <input type="text" name="name" id="name" required="" class="form-control">
@@ -45,13 +37,13 @@
                     </select>
                 </div>
                 <br>
-                
+
                 <div class="form-group">
                     <label for="tamanioforma" class="label">Tamaño de la Forma</label>
                     <input type="number" name="tamanioforma" id="tamanioforma" min="1" class="form-control">
                 </div>
                 <br>
-                
+
                 <div class="form-group">
                     <label for="sombraluz" class="label">Sombra de Luz</label>
                     <select name="sombraluz" id="sombraluz" class="form-control">
