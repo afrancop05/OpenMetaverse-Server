@@ -98,6 +98,13 @@
                                     </li>
                                 </ul>
                             </li>
+                            @auth
+                                @if ((auth()->check()) && auth()->user()->hasRole('user'))
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('descargar.cliente') }}">OpenMetaverse <i class='bx bx-download'></i></a>
+                                    </li>
+                                @endif
+                            @endauth
                         @endguest
                     </ul>
                 </div>
