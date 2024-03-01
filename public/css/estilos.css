@@ -11,6 +11,15 @@
     text-align: center;
 }
 
+.mensaje-copiado {
+    position: absolute;
+    background-color: #2d196c; 
+    color: #ffffff;
+    padding: 5px 10px;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+}
+
 label {
     text-shadow: 
         -1px -1px 0 black,  

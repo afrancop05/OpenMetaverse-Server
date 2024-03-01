@@ -37,7 +37,11 @@
                     <tr>
                         <!-- Suponiendo que hay una relación owner en el modelo Content -->
                         <td>{{ $data->type->type }}</td>
-                        <td>{{ $data->file }}</td>
+                        <td>
+                            <button value="{{ $data->id }}" class="copy-api btn btn-outline-secondary py-1">
+                                {{ $data->file }}
+                            </button>
+                        </td>
                         <td>
                             <form action="{{ route('cambiar.visibilidad', $data->id) }}" method="POST">
                                 @csrf
