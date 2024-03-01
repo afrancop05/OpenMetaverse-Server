@@ -31,8 +31,6 @@ Route::get('borrausuario/{id}', [UserController::class, "destroy"]) -> name("bor
 
 Route::get('descargar', [UserController::class, "descargarCliente"]) -> name("descargar.cliente");
 
-Route::get('/descargar/{fileName}', [UserController::class, "descargarFichero"])->name('descargar.fichero');
-
 // Ruta para mostrar el formulario (GET)
 Route::get('/subir', [UserController::class, 'mostrarFormularioSubida'])->name('mostrar.formulario.subida');
 
@@ -42,3 +40,12 @@ Route::post('/subir', [UserController::class, 'subirContenido'])->name('subir.co
 Route::get('crearmundo', [WorldMaker::class, 'crearMundo'])->name('crear.mundo');
 
 Route::post('crearmundo', [WorldMaker::class, 'guardarMundo'])->name('crear.mundo');
+
+Route::get("descargar/win64", function() {
+    return Response::download(public_path()."/download/OMV-Client_EXPORT_WIN64.zip", "Client_win64.zip", ["content-type: application/zip"]);
+});
+
+Route::get("descargar/linux", function() {
+    return Response::download(public_path()."/download/OMV-Client_EXPORT_LINUX.zip", "Client_linux.zip", ["content-type: application/zip"]);
+});
+
