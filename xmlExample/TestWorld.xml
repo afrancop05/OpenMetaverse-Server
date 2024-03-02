@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="UTF-8"/>
 		<title>Mundo</title>
-		<meta name="description" content="Mundo Privado"/>
+		<meta name="description" content="Mundo Publico"/>
 		<meta name="author" content="Daniel Píriz"/>
 		<meta name="keywords" content="MVML"/>
 	</head>
@@ -35,6 +35,5 @@
 			<collider shape="sphere"/>
 		</trigger>
 		<light type="directional" shadow="soft" rotation="-45,0,0" position="0,2,2"></light>
-		<audio type="global" mode="play" src="res://Audio/BackToTheLight_IntroLoop.mp3"></audio>
 	</scene>
 </world>
