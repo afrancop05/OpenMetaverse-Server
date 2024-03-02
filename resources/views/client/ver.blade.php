@@ -15,8 +15,8 @@
 
                 <div id="download-list">
                     <ul>
-                        <li><a href="./descargar/linux" class="btn btn-outline-light">Linux</a></li>
-                        <li><a href="./descargar/win64" class="btn btn-outline-light">Windows</a></li>
+                        <li><a href="{{ route("descargar.linux") }}" class="btn btn-outline-light">Linux</a></li>
+                        <li><a href="{{ route("descargar.win64") }}" class="btn btn-outline-light">Windows</a></li>
                     </ul>
                 </div>
             </div>

@@ -43,9 +43,9 @@ Route::post('crearmundo', [WorldMaker::class, 'guardarMundo'])->name('crear.mund
 
 Route::get("descargar/win64", function() {
     return Response::download(public_path()."/download/OMV-Client_EXPORT_WIN64.zip", "Client_win64.zip", ["content-type: application/zip"]);
-});
+})->name("descargar.win64");
 
 Route::get("descargar/linux", function() {
     return Response::download(public_path()."/download/OMV-Client_EXPORT_LINUX.zip", "Client_linux.zip", ["content-type: application/zip"]);
-});
+})->name("descargar.linux");
 
