@@ -28,6 +28,14 @@ class UserSeeder extends Seeder
             ]
         )->assignRole($roleAdmin);
 
+        User::create([
+            'name' => 'test',
+            'email' => "test@gmail.com",
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
+            ]
+        )->assignRole($roleNormal);
+
         $usuariosAdmin = User::factory(1)->create();
         $usuariosNormales = User::factory(5)->create();
 

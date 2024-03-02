@@ -3,20 +3,23 @@
 Esta aplicación web es capaz de gestionar usuarios, permisos y contenido en tres categorías: mundos, avatares y artefactos, además de tener un pequeño editor de mundos para poder personalizarlos y un cliente que puede interpretarlos en 3D.
 
 ## Autores
-Alejandro Franco
-José Miguel Lunisa
+Alejandro Franco  
+José Miguel Lunisa  
 Daniel Píriz
 
+## Usuarios Testing
+
+**Administrador:** admin@gmail.com | password  
+**Usuario:** test@gmail.com | password
+
 ## Página web
-
-
 
 ## Cliente personalizado
 
 Al ejecutar el programa, se abre una ventana que pide introducir una ruta. Esta ruta puede ser interna del propio equipo, o HTTP/HTTPS:
 ![Inicio del cliente](./img/client_01.png)
 
-Para conseguir la ruta de un contenido subido a la plataforma, basta con hacer click sobre el nombre del archivo en la página home:
+Para conseguir la ruta de un contenido subido a la plataforma, basta con hacer click sobre el nombre del archivo:
 ![Copiado del enlace](./img/client_02.png)
 
 De vuelta en el cliente, basta con pegar el enlace en campo y hacer click en "importar" para cargar el mundo. Es importante mencionar que, dado que el cliente no tiene autenticación, el mundo debe estar marcado como público para poder ser descargado, si no, recibirá un error 403 (recurso prohibido):
